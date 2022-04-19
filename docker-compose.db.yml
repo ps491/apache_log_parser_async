@@ -3,7 +3,7 @@ version: '3.7'
 services:
   db:
     image: postgres
-    container_name: gds
+    container_name: gds_db
     volumes:
       - ./pg_data:/var/lib/postgresql/data/
 #      - ./compose/postgres/initdb:/docker-entrypoint-initdb.d

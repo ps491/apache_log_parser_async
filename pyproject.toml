@@ -9,6 +9,7 @@ python = "^3.8"
 aiohttp = "^3.8.1"
 asyncpg = "^0.25.0"
 aiohttp-swagger3 = "^0.7.2"
+python-decouple = "^3.6"
 
 [tool.poetry.dev-dependencies]
 
