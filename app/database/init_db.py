@@ -3,11 +3,11 @@ import asyncpg
 
 import json
 
-from settings.base import DATABASE
 
-DSN = 'postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}'
+from settings.config import POSTGRES_HOST, POSTGRES_PORT, USER, PASSWORD, DB_NAME
+USER_DB_URL = f'postgresql://{USER}:{PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{DB_NAME}'
 
-USER_DB_URL = DSN.format(**DATABASE)
+
 
 
 async def setup_db(dsn_url):

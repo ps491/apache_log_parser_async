@@ -3,8 +3,7 @@ from typing import Union
 import asyncpg
 from asyncpg import Connection
 from asyncpg.pool import Pool
-# from pathlib
-from communication_center.dbm.conn.tools import (POSTGRES_HOST, POSTGRES_PORT, USER, PASSWORD, DB_NAME)
+from settings.config import POSTGRES_HOST, POSTGRES_PORT, USER, PASSWORD, DB_NAME
 
 
 class DataBaseClass:
