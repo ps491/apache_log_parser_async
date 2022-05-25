@@ -3,7 +3,7 @@ import logging
 from aiohttp import web
 from aiohttp_swagger3 import SwaggerDocs, SwaggerUiSettings, SwaggerInfo
 
-from db import DataBaseClass
+from database.db import DataBaseClass
 
 app = web.Application()
 routes = web.RouteTableDef()
@@ -52,6 +52,7 @@ async def get_log(request: web.Request, ) -> web.Response:
     # print('Ваш ник:', result[0]['username'])
     return web.json_response({"id": 101, "name": "Lessie"})
 
+
 @routes.get("/log/")
 async def get_logs(request: web.Request, ) -> web.Response:
     """
@@ -63,6 +64,7 @@ async def get_logs(request: web.Request, ) -> web.Response:
     # print('Ваш баланс:', result[0]['balance'])
     # print('Ваш ник:', result[0]['username'])
     return web.json_response([{"id": 101, "name": "Lessie"}, {"id": 101, "name": "Lessie"}])
+
 
 app.add_routes(routes)
 
