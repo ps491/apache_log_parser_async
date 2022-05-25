@@ -18,47 +18,14 @@ async def create_log(request: web.Request) -> web.Response:
     """
     Create log
     """
-
-    return web.json_response({"id": 101, "name": "Lessie"})
-
-
-@routes.delete("/log/")
-async def delete_log(request: web.Request) -> web.Response:
-    """
-    Delete log
-    """
-
-    return web.json_response({"id": 101, "name": "Lessie"})
+    data = await request.json()
+    print(data)
+    return web.json_response(data={"id": 101, "name": "Lessie"}, status=201)
 
 
-@routes.patch("/log/")
-async def update_log(request: web.Request) -> web.Response:
-    """
-    Update log
-    """
-
-    return web.json_response({"id": 101, "name": "Lessie"})
-
-
-@routes.get("/log/{log_id}/")
-async def get_log(request: web.Request, ) -> web.Response:
-    """
-    Log Detail
-
-    """
-    # result = await DataBase.execute("SELECT username, balance FROM users WHERE chat_id = $1",
-    #                                 message.from_user.id, fetchval=True)
-    # print('Ваш баланс:', result[0]['balance'])
-    # print('Ваш ник:', result[0]['username'])
-    return web.json_response({"id": 101, "name": "Lessie"})
-
-
-@routes.get("/log/")
+@routes.get("/logs/")
 async def get_logs(request: web.Request, ) -> web.Response:
-    """
-    Log Detail
-
-    """
+    """All logs list"""
     # result = await DataBase.execute("SELECT username, balance FROM users WHERE chat_id = $1",
     #                                 message.from_user.id, fetchval=True)
     # print('Ваш баланс:', result[0]['balance'])
