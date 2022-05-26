@@ -2,8 +2,10 @@ import logging
 
 from aiohttp import web
 from aiohttp_swagger3 import SwaggerDocs, SwaggerUiSettings, SwaggerInfo
+from dataclasses import asdict
 
 from database.db import DataBaseClass
+from database.models import User
 
 app = web.Application()
 routes = web.RouteTableDef()
@@ -19,18 +21,20 @@ async def create_log(request: web.Request) -> web.Response:
     Create log
     """
     data = await request.json()
-    print(data)
-    return web.json_response(data={"id": 101, "name": "Lessie"}, status=201)
+    user = User(**data)
+    # print(User(**data))
+    return web.json_response(data={"id": user.id, "name": user.name}, status=201)
 
 
 @routes.get("/logs/")
 async def get_logs(request: web.Request, ) -> web.Response:
     """All logs list"""
+    data_from_db = [{"id": 101, "name": "Lessie"}, {"id": 101, "name": "Lessie"}]
     # result = await DataBase.execute("SELECT username, balance FROM users WHERE chat_id = $1",
     #                                 message.from_user.id, fetchval=True)
     # print('Ваш баланс:', result[0]['balance'])
     # print('Ваш ник:', result[0]['username'])
-    return web.json_response([{"id": 101, "name": "Lessie"}, {"id": 101, "name": "Lessie"}])
+    return web.json_response([asdict(User(**i)) for i in data_from_db])
 
 
 app.add_routes(routes)

@@ -15,7 +15,6 @@ class TestAPI(AioHTTPTestCase):
         app.router.add_post('/log/', create_log)
         return app
 
-
     async def test_log_create(self):
         """Testing create log"""
         test_data = {"id": 101, "name": "Lessie"}

@@ -22,3 +22,9 @@ class Log:
     referrer: str
     agent: str
     other: str
+
+
+@dataclass
+class User:
+    id: int
+    name: str
