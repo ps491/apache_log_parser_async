@@ -1,15 +1,11 @@
 import asyncio
 import asyncpg
 
-import json
-
-
-
-
 
 async def setup_db(dsn_url):
     conn = await asyncpg.connect(dsn=dsn_url)
     # drop tables
+
     await conn.execute('''
         DROP TABLE IF EXISTS logs CASCADE;
         DROP TABLE IF EXISTS log_files CASCADE;
@@ -45,6 +41,7 @@ async def setup_db(dsn_url):
 
     await conn.close()
 
+
 async def insert_test_data(dsn_url):
     conn = await asyncpg.connect(dsn=dsn_url)
     await conn.execute('''
@@ -54,7 +51,7 @@ async def insert_test_data(dsn_url):
         ''')
 
     await conn.execute('''
-        INSERT INTO log_files(file, processed) 
+        INSERT INTO log_files(file, processed)
         VALUES($1, $2)
     ''', '/url/url', True)
 
