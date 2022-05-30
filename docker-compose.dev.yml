@@ -11,19 +11,18 @@ services:
 
   db:
     image: postgres
+    container_name: gds_db
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/
+    #      - ./compose/postgres/initdb:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-#      POSTGRES_MULTIPLE_DATABASES: sentry,myproject
 
-    volumes:
-      - ./pg_data/db:/var/lib/postgresql/data
-
+    restart: unless-stopped
     ports:
       - "5432:5432"
-    networks:
-      - dgs
 
   app:
     container_name: app
