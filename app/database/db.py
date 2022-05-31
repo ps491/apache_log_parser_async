@@ -4,7 +4,7 @@ import asyncpg
 from asyncpg import Connection
 from asyncpg.pool import Pool
 
-from app.settings.config import POSTGRES_HOST, POSTGRES_PORT, POSTGRES_USER, POSTGRES_PASSWORD, DB_NAME
+from settings.config import POSTGRES_HOST, POSTGRES_PORT, POSTGRES_USER, POSTGRES_PASSWORD, DB_NAME
 
 
 class DataBaseClass:
@@ -34,6 +34,7 @@ class DataBaseClass:
         return result
 
 
+# ------------------------------------------------------------------
 class PostgresConnector:
     def __init__(self):
         self.CONNECTION = None
@@ -56,7 +57,7 @@ class PostgresConnector:
             await self.CONNECTION.close()
             return result
 
-    async def executer(self, query, *args):
+    async def execute(self, query, *args):
         if self.CONNECTION is None:
             await self.try_to_connect()
             result = await self.CONNECTION.execute(query, *args)
@@ -65,10 +66,11 @@ class PostgresConnector:
 
 
 def db_connector(func):
-    async def wrapper(*args, kwargs):
+    async def wrapper(*args, **kwargs):
         connection = PostgresConnector()
         await connection.try_to_connect()
-        result = await func(connection, *args, kwargs)
+        # print(connection)
+        result = await func(connection, *args, **kwargs)
         await connection.close_connection()
         return result
 

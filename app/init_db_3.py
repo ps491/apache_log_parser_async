@@ -1,6 +1,6 @@
 import asyncio
 
-from app.database.db import db_connector
+from database.db import db_connector
 
 
 
@@ -14,7 +14,7 @@ async def insert_test_data(connection, *args, **kwargs):
                 ('42.236.10.125', '-', '-', '19/Dec/2020:15:23:11 +0100', 'GET', '/templates/_system/css/general.css', 'HTTP/1.1', '404', '239', 'http://www.almhuette-raith.at/', 'Mozilla/5.0 (Linux; U; Android 8.1.0; zh-CN; EML-AL00 Build/HUAWEIEML-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 baidu.sogo.uc.UCBrowser/11.9.4.974 UWS/2.13.1.48 Mobile Safari/537.36 AliApp(DingTalk/4.5.11) com.alibaba.android.rimet/10487439 Channel/227200 language/zh-CN', '-')
     '''
 
-    result = await connection.executer(com)
+    result = await connection.fetch(com)
     print(result)
 
 
@@ -22,6 +22,7 @@ async def insert_test_data(connection, *args, **kwargs):
 
 if __name__ == '__main__':
     # asyncio.get_event_loop().run_until_complete(DataBase.create_pool())
-    asyncio.get_event_loop().run_until_complete(insert_test_data())
+    asyncio.run(insert_test_data())
+    # asyncio.get_event_loop().run_until_complete(insert_test_data())
 
 
