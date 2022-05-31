@@ -1,7 +1,7 @@
 import asyncio
 
-from app.database.db import DataBaseClass
-from app.settings.config import POSTGRES_HOST, POSTGRES_PORT, POSTGRES_USER, POSTGRES_PASSWORD, DB_NAME
+from database.db import DataBaseClass
+from settings.config import POSTGRES_HOST, POSTGRES_PORT, POSTGRES_USER, POSTGRES_PASSWORD, DB_NAME
 
 USER_DB_URL = f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{DB_NAME}'
 DataBase = DataBaseClass(USER_DB_URL)

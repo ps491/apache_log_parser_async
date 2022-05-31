@@ -53,9 +53,15 @@ class PostgresConnector:
     async def fetch(self, query, *args):
         if self.CONNECTION is None:
             await self.try_to_connect()
-            result = await self.CONNECTION.fetch(query, *args)
-            await self.CONNECTION.close()
-            return result
+        result = await self.CONNECTION.fetch(query, *args)
+        await self.CONNECTION.close()
+        return result
+
+    # if self.CONNECTION is None:
+    #     await self.try_to_connect()
+    #     result = await self.CONNECTION.fetch(query, *args)
+    #     await self.CONNECTION.close()
+    #     return result
 
     async def execute(self, query, *args):
         if self.CONNECTION is None:
@@ -69,7 +75,7 @@ def db_connector(func):
     async def wrapper(*args, **kwargs):
         connection = PostgresConnector()
         await connection.try_to_connect()
-        # print(connection)
+
         result = await func(connection, *args, **kwargs)
         await connection.close_connection()
         return result

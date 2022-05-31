@@ -24,7 +24,7 @@ run_local:
 
 
 #init_db:
-#	poetry run python init_db_2.py
+#	poetry run python app/init_db_2.py
 
 init_db:
 	poetry run python app/init_db_3.py

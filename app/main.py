@@ -4,8 +4,9 @@ from aiohttp import web
 from aiohttp_swagger3 import SwaggerDocs, SwaggerUiSettings, SwaggerInfo
 from dataclasses import asdict
 
-from database.db import DataBaseClass
+from database.connector import DataBaseClass, db_connector
 from database.models import User
+from parse.parse_log import parse_logs
 
 app = web.Application()
 routes = web.RouteTableDef()
@@ -16,14 +17,18 @@ DataBase = DataBaseClass()
 
 
 @routes.post("/log/")
-async def create_log(request: web.Request) -> web.Response:
+async def create_log(request: web.Request, *args, **kwargs) -> web.Response:
     """
     Create log
     """
+
     data = await request.json()
-    user = User(**data)
+    print(data)
+    # user = User(**data)
     # print(User(**data))
-    return web.json_response(data={"id": user.id, "name": user.name}, status=201)
+    if await parse_logs(data):
+        return web.json_response(data={"answer": "ok"}, status=201)
+    return web.json_response(data={"answer": "not save"}, status=400)
 
 
 @routes.get("/logs/")

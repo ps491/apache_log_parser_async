@@ -3,9 +3,6 @@ import asyncio
 from database.db import db_connector
 
 
-
-
-
 @db_connector
 async def insert_test_data(connection, *args, **kwargs):
     com = '''
@@ -18,11 +15,7 @@ async def insert_test_data(connection, *args, **kwargs):
     print(result)
 
 
-
-
 if __name__ == '__main__':
     # asyncio.get_event_loop().run_until_complete(DataBase.create_pool())
     asyncio.run(insert_test_data())
     # asyncio.get_event_loop().run_until_complete(insert_test_data())
-
-
