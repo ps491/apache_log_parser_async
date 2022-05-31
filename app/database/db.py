@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Coroutine
 
 import asyncpg
 from asyncpg import Connection
@@ -52,6 +52,13 @@ class PostgresConnector:
         if self.CONNECTION is None:
             await self.try_to_connect()
             result = await self.CONNECTION.fetch(query, *args)
+            await self.CONNECTION.close()
+            return result
+
+    async def execute(self, query, *args):
+        if self.CONNECTION is None:
+            await self.try_to_connect()
+            result = await self.CONNECTION.execute(query, *args)
             await self.CONNECTION.close()
             return result
 

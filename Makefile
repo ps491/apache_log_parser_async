@@ -14,7 +14,12 @@ help:
 test:
 	poetry run python -m unittest discover -s app
 
+#init_db:
+#	 poetry run python init_db.py
+
+
+#init_db:
+#	poetry run python init_db_2.py
+
 init_db:
-	#poetry run python init_db.py
-	poetry run python init_db_2.py
-	#poetry run python init_db_3.py
+	poetry run python init_db_3.py
