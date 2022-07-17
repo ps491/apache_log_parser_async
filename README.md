@@ -1,24 +1,24 @@
 ## Apache log parser
-Приложение, которое является агрегатором данных из access логов apache 
-с сохранением в БД. Разбор файлов выполняется по cron'у.
+An application that is an aggregator of data from apache access logs
+with saving in the database. File parsing is done by cron.
 
-В приложении реализованы функции:
-- запись в бд
-- просмотр данных сохраненных в БД (группировка по IP, по дате, выборка по промежутку дат)
-- API для получения данных в виде JSON (смысл тот же: получение данных по временному промежутку, возможность 
-группировать/фильтровать по IP)
-- конфигурация через файл настроек (где лежат логи, маска файлов, и все, что Вам потребуется для настройки приложения)
-СУБД: postgresql
+The application has the following functions:
+- write to database
+- viewing data stored in the database (grouping by IP, by date, selection by date interval)
+- API for receiving data in the form of JSON (the meaning is the same: obtaining data by time interval, the ability
+group/filter by IP)
+- configuration through the settings file (where the logs, file mask, and everything you need to configure the application are)
+DBMS: postgresql
 
-# Запуск
-1. запуск
+# run
+1. launch
 ```sh
 $ docker-compose -f docker-compose.dev.yml up --build
 ```
 
 
-# Пояснения
-1. 
+# Explanations
+one.
 
 
 
