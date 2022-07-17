@@ -23,8 +23,8 @@ def get_re_pattern():
 async def re_logs_to_dict(row: str) -> dict:
     """Pegexp rows"""
     pattern = re.compile(get_re_pattern())
-    # распарсиваем в словарь
+    # parsing into a dictionary
     result = pattern.match(row).groupdict()
-    # распарсиваем time, переводим в объект datetime
+    # parse time, convert to datetime object
     result['time'] = datetime.strptime(result['time'], '%d/%b/%Y:%H:%M:%S %z')
     return result
