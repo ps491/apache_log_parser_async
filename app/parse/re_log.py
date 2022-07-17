@@ -21,7 +21,7 @@ def get_re_pattern():
 
 
 async def re_logs_to_dict(row: str) -> dict:
-    """Pegexp rows"""
+    """Regexp rows"""
     pattern = re.compile(get_re_pattern())
     # parsing into a dictionary
     result = pattern.match(row).groupdict()
